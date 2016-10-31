@@ -13,7 +13,7 @@ module Papercrop
     def crop_preview(attachment, opts = {})
       attachment = attachment.to_sym
       width      = opts[:width] || 100
-      height     = (width / self.object.send(:"#{attachment}_aspect")).round
+      height     = (width / self.object.send(:"#{attachment}_initial_aspect")).round
 
       if self.object.send(attachment).class == Paperclip::Attachment
         wrapper_options = {

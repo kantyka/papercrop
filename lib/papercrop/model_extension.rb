@@ -31,6 +31,14 @@ module Papercrop
           aspect.first.to_f / aspect.last.to_f if aspect
         end
 
+        send :define_method, :"#{attachment_name}_initial_aspect" do
+          if aspect
+            aspect.first.to_f / aspect.last.to_f
+          else
+            1.0
+          end
+        end
+
         if respond_to? :attachment_definitions
           # for Paperclip <= 3.4
           definitions = attachment_definitions
